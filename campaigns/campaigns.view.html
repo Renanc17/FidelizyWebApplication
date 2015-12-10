@@ -1,0 +1,309 @@
+<div class="page-container">
+  <div class="sidebar-menu">
+
+      <div class="sidebar-menu-inner">
+
+        <header class="logo-env">
+
+          <!-- logo -->
+          <div class="logo">
+            <a href="#">
+              <img ng-if="vm.store.logo == 'undefined'" src="assets/fidelizy_img/Logo-Fidelizy.png" width="150" alt="FidelizyLogo" />
+              <img ng-if="vm.store.logo != 'undefined'" ng-src='{{vm.store.logo}}' width="150" alt="StoreLogo" />
+            </a>
+          </div>
+
+          <!-- logo collapse icon -->
+          <div class="sidebar-collapse">
+            <a href="#" class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+              <i class="entypo-menu"></i>
+            </a>
+          </div>
+
+          <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+          <div class="sidebar-mobile-menu visible-xs">
+            <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+              <i class="entypo-menu"></i>
+            </a>
+          </div>
+
+        </header>
+
+
+        <ul id="main-menu" class="main-menu">
+          <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+          <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+          <li >
+            <a href="#/">
+              <i class="fa fa-home"></i>
+              <span class="title">Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#/stamps">
+              <i class="fa fa-tags"></i>
+              <span class="title">Selos</span>
+              <span class="badge badge-primary">{{vm.numberOfStamps}}</span>
+            </a>
+          </li>
+
+
+          <li class="active opened active">
+            <a>
+              <i class="entypo-trophy"></i>
+              <span class="title">Campanhas</span>
+            </a>
+          </li>
+
+          <li>
+            <a>
+              <i class="entypo-ticket"></i>
+              <span class="title">Sorteios</span>
+            </a>
+          </li>
+
+          <li>
+            <a>
+              <i class="entypo-mail"></i>
+              <span class="title">Mensagens</span>
+              <span class="badge badge-secondary">0</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <i class="entypo-tools"></i>
+              <span class="title">Conta</span>
+            </a>
+          <ul>
+            <li>
+              <a>
+              <i class="fa fa-usd"></i>
+              <span class="title">Pagamento</span>
+              </a>
+            </li>
+            <li>
+              <a>
+              <i class="fa fa-building-o"></i>
+              <span class="title">Filiais</span>
+              </a>
+            </li>
+            <li>
+              <a>
+              <i class="fa fa-times"></i>
+              <span class="title">Encerrar Conta</span>
+              </a>
+            </li>
+          </ul>
+          </li>
+          <li>
+            <a>
+              <i class="entypo-cog"></i>
+              <span class="title">Configurações</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+    <!-- Sidebar End -->
+
+    <!-- Page Content Start -->
+  <div class="main-content">
+
+    <div class="row">
+    <!-- Profile Info and Notifications -->
+    <div class="col-md-6 col-sm-8 clearfix">
+
+      <ul class="user-info pull-left pull-none-xsm">
+
+        <!-- Profile Info -->
+
+          <a href="#" style="font-size:30px">
+          <!--	<img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44">-->
+          Olá, {{vm.store.companyName}}... {{vm.greetings}}
+          </a>
+      </ul>
+
+      <ul class="user-info pull-left pull-right-xs pull-none-xsm">
+
+        <!-- Raw Notifications -->
+        <li class="notifications dropdown">
+
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <i class="entypo-attention"></i>
+            <span class="badge badge-info">0</span>
+          </a>
+
+
+        </li>
+
+        <!-- Message Notifications -->
+        <li class="notifications dropdown">
+
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <i class="entypo-mail"></i>
+            <span class="badge badge-secondary">0</span>
+          </a>
+
+        </li>
+
+        <!-- Task Notifications -->
+        <li class="notifications dropdown">
+
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <i class="entypo-list"></i>
+            <span class="badge badge-warning">0</span>
+          </a>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- Raw Links -->
+    <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+      <ul class="list-inline links-list pull-right">
+        <li>
+          <a href="#/login">
+            Log Out <i class="entypo-logout right"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <hr/>
+    <h1>Campanhas:</h1>
+
+    <!-- <fieldset class="form-group">
+      <input ng-model="limit" type="text" class="form-control" placeholder="Limit" title="Number of notifications" />
+    </fieldset> -->
+
+
+    <table class="table table-bordered datatable" id="table-3">
+      <thead>
+        <tr class="replace-inputs">
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Data Inicial</th>
+          <th>Data Final</th>
+          <th>Premio</th>
+          <th>Selos necessários</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd gradeX" ng-repeat="c in campaigns track by $index">
+          <td>{{c.name}}</td>
+          <td>{{c.description}}</td>
+          <td>{{c.startDate}}</td>
+          <td>{{c.endDate}}</td>
+          <td>{{c.reward}}</td>
+          <td>{{c.numberOfStamps}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="javascript:;" onclick="jQuery('#modal-6').modal('show', {backdrop: 'static'});" class="btn btn-default">Nova Campanha</a>
+
+
+
+  </div>
+</div>
+
+
+<form role="form" name="form">
+<!-- Modal 6 (Long Modal)-->
+<div class="modal fade" id="modal-6">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Nova campanha</h4>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="form-group">
+              <label for="name" class="control-label">Nome *</label>
+
+              <input ng-model="vm.newCampaign.name" type="text" class="form-control" name="name" id="name" placeholder="Nome da campanha" required>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="form-group">
+              <label for="description" class="control-label">Descrição</label>
+
+              <input ng-model="vm.newCampaign.description" type="text" class="form-control" name="description" id="description" placeholder="Descrição da campanha">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+
+            <div class="form-group">
+              <label for="startDate" class="control-label">Data Inicial</label>
+
+              <input ng-model="vm.newCampaign.startDate" type="date" class="form-control" name="startDate" id="startDate" placeholder="Data inicial da campanha">
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <div class="form-group">
+              <label for="endDate" class="control-label">Data Final</label>
+
+              <input ng-model="vm.newCampaign.endDate" type="date" class="form-control" name="endDate" id="endDate" placeholder="Data final da campanha.">
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="form-group">
+              <label for="reward" class="control-label">Premio</label>
+
+              <input ng-model="vm.newCampaign.reward" type="text" class="form-control" name="reward" id="reward" placeholder="Premio da campanha">
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <div class="form-group">
+              <label for="numberOfStamps" class="control-label">Selos Necessários *</label>
+
+              <input ng-model="vm.newCampaign.numberOfStamps" type="number" class="form-control" name="numberOfStamps" id="numberOfStamps" placeholder="10" required>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button ng-click="campaignRegisterCancel()" type="button" class="btn btn-default" data-dismiss="modal" data-clear="true">Cancelar</button>
+        <button ng-click="registerNewCampaign()" type="button" class="btn btn-info" data-dismiss="modal" data-clear="true" ng-disabled="form.$invalid">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="assets/js/neon-custom.js"></script>
